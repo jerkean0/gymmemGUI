@@ -60,6 +60,7 @@ public class membersForm extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        confirm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -242,6 +243,14 @@ public class membersForm extends javax.swing.JFrame {
         });
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 200, 30));
 
+        confirm.setText("CONFIRM");
+        confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmMouseClicked(evt);
+            }
+        });
+        jPanel3.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+
         memberform.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 750, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -336,6 +345,10 @@ public class membersForm extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_wrongMouseClicked
 
+    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
+        
+    }//GEN-LAST:event_confirmMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +387,7 @@ public class membersForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel add;
+    private javax.swing.JButton confirm;
     private javax.swing.JPanel delete;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

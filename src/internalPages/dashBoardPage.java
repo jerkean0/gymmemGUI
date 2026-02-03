@@ -70,13 +70,13 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(470, 0, 140, 160);
+        jPanel3.setBounds(490, 0, 140, 160);
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Gym Management System");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(0, 0, 490, 29);
+        jLabel5.setBounds(0, 0, 490, 32);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 160));
 
