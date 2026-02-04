@@ -286,77 +286,77 @@ public class member extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-    
-    }//GEN-LAST:event_searchActionPerformed
+    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
+        refresh.setBackground(navcolor);
+    }//GEN-LAST:event_refreshMouseExited
 
-    private void addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseEntered
-      add.setBackground(bodycolor);
-    }//GEN-LAST:event_addMouseEntered
+    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
+        refresh.setBackground(bodycolor);
+    }//GEN-LAST:event_refreshMouseEntered
 
-    private void updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseEntered
-     update.setBackground(bodycolor);
-    }//GEN-LAST:event_updateMouseEntered
-
-    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
-     delete.setBackground(bodycolor);
-    }//GEN-LAST:event_deleteMouseEntered
-
-    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
-     delete.setBackground(navcolor);   
-    }//GEN-LAST:event_deleteMouseExited
-
-    private void addMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseExited
-     add.setBackground(navcolor);
-    }//GEN-LAST:event_addMouseExited
-
-    private void updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseExited
-       update.setBackground(navcolor);
-    }//GEN-LAST:event_updateMouseExited
-
-    private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered
-       search_button.setBackground(bodycolor);
-    }//GEN-LAST:event_search_buttonMouseEntered
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+        displayData();
+        search.setText("");
+    }//GEN-LAST:event_refreshMouseClicked
 
     private void search_buttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseExited
-       search_button.setBackground(navcolor);
+        search_button.setBackground(navcolor);
     }//GEN-LAST:event_search_buttonMouseExited
 
-    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-   membersForm mf = new membersForm();
-    mf.setVisible(true);
-    mf.pack();
-    mf.setLocationRelativeTo(null); // Centers the form on screen
-    }//GEN-LAST:event_addMouseClicked
+    private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered
+        search_button.setBackground(bodycolor);
+    }//GEN-LAST:event_search_buttonMouseEntered
+
+    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
+        config.configclass conf = new config.configclass();
+        String txt = search.getText(); // 'search' is the name of your text field
+
+        // This query looks for the text in either the First Name or Last Name
+        String query = "SELECT m_id AS 'ID', m_fname AS 'First Name', m_lname AS 'Last Name', "
+        + "m_gender AS 'Gender', m_status AS 'Status' FROM members "
+        + "WHERE m_fname LIKE '%" + txt + "%' OR m_lname LIKE '%" + txt + "%'";
+
+        conf.displayData(query, membersTable);
+    }//GEN-LAST:event_search_buttonMouseClicked
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+
+    }//GEN-LAST:event_searchActionPerformed
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_searchMouseClicked
 
-    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-    config.configclass conf = new config.configclass();
-    String txt = search.getText(); // 'search' is the name of your text field
-    
-    // This query looks for the text in either the First Name or Last Name
-    String query = "SELECT m_id AS 'ID', m_fname AS 'First Name', m_lname AS 'Last Name', "
-                 + "m_gender AS 'Gender', m_status AS 'Status' FROM members "
-                 + "WHERE m_fname LIKE '%" + txt + "%' OR m_lname LIKE '%" + txt + "%'";
-    
-    conf.displayData(query, membersTable);  
-    }//GEN-LAST:event_search_buttonMouseClicked
+    private void updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseExited
+        update.setBackground(navcolor);
+    }//GEN-LAST:event_updateMouseExited
 
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-    displayData(); 
-    search.setText("");      
-    }//GEN-LAST:event_refreshMouseClicked
+    private void updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseEntered
+        update.setBackground(bodycolor);
+    }//GEN-LAST:event_updateMouseEntered
 
-    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
-     refresh.setBackground(bodycolor);
-    }//GEN-LAST:event_refreshMouseEntered
+    private void addMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseExited
+        add.setBackground(navcolor);
+    }//GEN-LAST:event_addMouseExited
 
-    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
-     refresh.setBackground(navcolor);
-    }//GEN-LAST:event_refreshMouseExited
+    private void addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseEntered
+        add.setBackground(bodycolor);
+    }//GEN-LAST:event_addMouseEntered
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        membersForm mf = new membersForm();
+        mf.setVisible(true);
+        mf.pack();
+        mf.setLocationRelativeTo(null); // Centers the form on screen
+    }//GEN-LAST:event_addMouseClicked
+
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        delete.setBackground(navcolor);
+    }//GEN-LAST:event_deleteMouseExited
+
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        delete.setBackground(bodycolor);
+    }//GEN-LAST:event_deleteMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -374,7 +374,7 @@ public class member extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable membersTable;
+    private javax.swing.JTable membersTable;
     private javax.swing.JPanel refresh;
     private javax.swing.JTextField search;
     private javax.swing.JPanel search_button;

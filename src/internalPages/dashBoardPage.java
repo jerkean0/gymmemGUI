@@ -7,7 +7,7 @@ package internalPages;
 
 import java.awt.Color;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
+import internalPages.manageUser;
 /**
  *
  * @author Admin
@@ -90,6 +90,9 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
 
         manageUser.setBackground(new java.awt.Color(204, 204, 204));
         manageUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageUserMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 manageUserMouseEntered(evt);
             }
@@ -221,6 +224,33 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
         System.out.println("Error: " + e.getMessage());
     }
     }//GEN-LAST:event_membersMouseClicked
+
+    private void manageUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserMouseClicked
+    try {
+        // 1. Create the internal frame from the internalPages package
+        internalPages.manageUser userPage = new internalPages.manageUser();
+        
+        // 2. Get the main window (your dashBoard)
+        Object topFrame = javax.swing.SwingUtilities.getWindowAncestor(this);
+        
+        // 3. Find the 'maindesktop' variable inside the dashBoard class
+        java.lang.reflect.Field desktopField = topFrame.getClass().getDeclaredField("maindesktop");
+        desktopField.setAccessible(true);
+        javax.swing.JDesktopPane desktop = (javax.swing.JDesktopPane) desktopField.get(topFrame);
+        
+        // 4. Clear the current view and show the User page
+        desktop.removeAll();
+        desktop.add(userPage).setVisible(true);
+        
+        // 5. Refresh the UI
+        desktop.revalidate();
+        desktop.repaint();
+        
+    } catch (Exception e) {
+        // This will print if the variable name 'maindesktop' is spelled wrong
+        System.out.println("Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_manageUserMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
