@@ -46,7 +46,7 @@ public class register extends javax.swing.JFrame {
         username7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        sigin = new javax.swing.JButton();
+        register = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -151,24 +151,27 @@ public class register extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 60));
 
-        sigin.setBackground(new java.awt.Color(255, 255, 255));
-        sigin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        sigin.setForeground(new java.awt.Color(51, 51, 51));
-        sigin.setText("Register");
-        sigin.addMouseListener(new java.awt.event.MouseAdapter() {
+        register.setBackground(new java.awt.Color(255, 255, 255));
+        register.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        register.setForeground(new java.awt.Color(51, 51, 51));
+        register.setText("Register");
+        register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                siginMouseEntered(evt);
+                registerMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                siginMouseExited(evt);
+                registerMouseExited(evt);
             }
         });
-        sigin.addActionListener(new java.awt.event.ActionListener() {
+        register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siginActionPerformed(evt);
+                registerActionPerformed(evt);
             }
         });
-        jPanel1.add(sigin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 220, 30));
+        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 220, 30));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 540, 430));
 
@@ -201,15 +204,15 @@ public class register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pwordActionPerformed
 
-    private void siginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siginMouseEntered
+    private void registerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseEntered
 
-    }//GEN-LAST:event_siginMouseEntered
+    }//GEN-LAST:event_registerMouseEntered
 
-    private void siginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siginMouseExited
+    private void registerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseExited
 
-    }//GEN-LAST:event_siginMouseExited
+    }//GEN-LAST:event_registerMouseExited
 
-    private void siginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siginActionPerformed
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
     String fullName = fname.getText();
     String userEmail = email.getText();
     String phoneNumber = uname5.getText(); // Make sure your variable name is 'phone'
@@ -233,17 +236,23 @@ public class register extends javax.swing.JFrame {
                    + "VALUES (?, ?, ?, ?, ?, 'Active')";
 
         if(conf.insertData(sql, fullName, userEmail, phoneNumber, userName, password) == 1) {
-             JOptionPane.showMessageDialog(null, "Registration Successful!");
-             
-             // Optional: Close this window and open the Login window
-             logIn loginFrame = new logIn();
-             loginFrame.setVisible(true);
-             this.dispose(); 
-        } else {
-             JOptionPane.showMessageDialog(null, "Error connecting to database.");
-        }
+        JOptionPane.showMessageDialog(null, "Registration Successful!");
+
+        // 1. Create the Login window object
+        logIn loginFrame = new logIn(); 
+
+        // 2. Make it visible to the user
+        loginFrame.setVisible(true); 
+
+        // 3. Close the current Registration window
+        this.dispose(); 
     }
-    }//GEN-LAST:event_siginActionPerformed
+    }
+    }//GEN-LAST:event_registerActionPerformed
+
+    private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -289,7 +298,7 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField pword;
-    private javax.swing.JButton sigin;
+    private javax.swing.JButton register;
     private javax.swing.JTextField uname;
     private javax.swing.JTextField uname5;
     private javax.swing.JLabel username1;

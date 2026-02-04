@@ -41,7 +41,7 @@ public class dashboard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         payments = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        userpane1 = new javax.swing.JPanel();
+        userpane = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         dashlogout = new javax.swing.JButton();
@@ -69,7 +69,7 @@ public class dashboard extends javax.swing.JFrame {
         });
         dashpane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("    DASHBOARD");
         dashpane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 170, 40));
@@ -90,7 +90,7 @@ public class dashboard extends javax.swing.JFrame {
         });
         account.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ACCOUNT");
         account.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
@@ -108,33 +108,33 @@ public class dashboard extends javax.swing.JFrame {
         });
         payments.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PAYMENTS");
         payments.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
 
         navbar.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 170, 40));
 
-        userpane1.setBackground(new java.awt.Color(102, 102, 102));
-        userpane1.addMouseListener(new java.awt.event.MouseAdapter() {
+        userpane.setBackground(new java.awt.Color(102, 102, 102));
+        userpane.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userpane1MouseClicked(evt);
+                userpaneMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                userpane1MouseEntered(evt);
+                userpaneMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                userpane1MouseExited(evt);
+                userpaneMouseExited(evt);
             }
         });
-        userpane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        userpane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("USER PAGE");
-        userpane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
+        userpane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
 
-        navbar.add(userpane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 170, 40));
+        navbar.add(userpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 170, 40));
 
         jPanel1.add(navbar);
         navbar.setBounds(0, 0, 170, 470);
@@ -142,14 +142,14 @@ public class dashboard extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(0, 0, 0));
         header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dashlogout.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        dashlogout.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         dashlogout.setText("LOG OUT");
         dashlogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dashlogoutActionPerformed(evt);
             }
         });
-        header.add(dashlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 90, 40));
+        header.add(dashlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 100, 40));
 
         jPanel1.add(header);
         header.setBounds(170, 0, 740, 60);
@@ -228,17 +228,17 @@ public class dashboard extends javax.swing.JFrame {
     maindesktop.add(dbp).setVisible(true);
     }//GEN-LAST:event_dashpaneMouseClicked
 
-    private void userpane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpane1MouseClicked
+    private void userpaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpaneMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_userpane1MouseClicked
+    }//GEN-LAST:event_userpaneMouseClicked
 
-    private void userpane1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpane1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userpane1MouseEntered
+    private void userpaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpaneMouseEntered
+     userpane.setBackground(bodycolor);
+    }//GEN-LAST:event_userpaneMouseEntered
 
-    private void userpane1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpane1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userpane1MouseExited
+    private void userpaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpaneMouseExited
+     userpane.setBackground(navcolor);
+    }//GEN-LAST:event_userpaneMouseExited
 
     /**
      * @param args the command line arguments
@@ -289,6 +289,6 @@ public class dashboard extends javax.swing.JFrame {
     public javax.swing.JDesktopPane maindesktop;
     private javax.swing.JPanel navbar;
     private javax.swing.JPanel payments;
-    private javax.swing.JPanel userpane1;
+    private javax.swing.JPanel userpane;
     // End of variables declaration//GEN-END:variables
 }

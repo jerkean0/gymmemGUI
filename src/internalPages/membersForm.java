@@ -43,24 +43,19 @@ public class membersForm extends javax.swing.JFrame {
         wrong = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        delete = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         add = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         update = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        search1 = new javax.swing.JTextField();
+        status = new javax.swing.JLabel();
+        firstname = new javax.swing.JLabel();
+        lastname = new javax.swing.JLabel();
         search2 = new javax.swing.JTextField();
         search3 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        confirm = new javax.swing.JButton();
+        male = new javax.swing.JRadioButton();
+        female = new javax.swing.JRadioButton();
+        gender = new javax.swing.JLabel();
+        Status = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -113,28 +108,11 @@ public class membersForm extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        delete.setBackground(new java.awt.Color(102, 102, 102));
-        delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                deleteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                deleteMouseExited(evt);
-            }
-        });
-        delete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("DELETE");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        delete.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
-
-        jPanel3.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 80, 30));
-
         add.setBackground(new java.awt.Color(102, 102, 102));
         add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 addMouseEntered(evt);
             }
@@ -151,7 +129,7 @@ public class membersForm extends javax.swing.JFrame {
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        jPanel3.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+        jPanel3.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 80, 30));
 
         update.setBackground(new java.awt.Color(102, 102, 102));
         update.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,34 +149,19 @@ public class membersForm extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         update.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        jPanel3.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 80, -1));
+        jPanel3.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 80, -1));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel6.setText("Status:");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 110, 30));
+        status.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        status.setText("Status:");
+        jPanel3.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 100, 30));
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel7.setText("Member ID:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 79, 110, 30));
+        firstname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        firstname.setText("First Name:");
+        jPanel3.add(firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, 30));
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel8.setText("First Name:");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 30));
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel9.setText("Last Name:");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, 30));
-
-        search1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        search1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        search1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        search1.setOpaque(false);
-        search1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                search1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, 30));
+        lastname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lastname.setText("Last Name:");
+        jPanel3.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, 30));
 
         search2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         search2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -209,7 +172,7 @@ public class membersForm extends javax.swing.JFrame {
                 search2ActionPerformed(evt);
             }
         });
-        jPanel3.add(search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 200, 30));
+        jPanel3.add(search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 200, 30));
 
         search3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         search3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -220,36 +183,28 @@ public class membersForm extends javax.swing.JFrame {
                 search3ActionPerformed(evt);
             }
         });
-        jPanel3.add(search3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 200, 30));
+        jPanel3.add(search3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, 30));
 
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jRadioButton1.setText("MALE");
-        jPanel3.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 100, 30));
+        male.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        male.setText("MALE");
+        jPanel3.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 100, 30));
 
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jRadioButton2.setText("FEMALE");
-        jPanel3.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 100, 30));
+        female.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        female.setText("FEMALE");
+        jPanel3.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 100, 30));
 
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel10.setText("Gender:");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 110, 30));
+        gender.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        gender.setText("Gender:");
+        jPanel3.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Maried" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        Status.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Maried" }));
+        Status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                StatusActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 200, 30));
-
-        confirm.setText("CONFIRM");
-        confirm.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                confirmMouseClicked(evt);
-            }
-        });
-        jPanel3.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+        jPanel3.add(Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 200, 30));
 
         memberform.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 750, 380));
 
@@ -277,14 +232,6 @@ public class membersForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
-        delete.setBackground(bodycolor);
-    }//GEN-LAST:event_deleteMouseEntered
-
-    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
-        delete.setBackground(navcolor);
-    }//GEN-LAST:event_deleteMouseExited
-
     private void addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseEntered
         add.setBackground(bodycolor);
     }//GEN-LAST:event_addMouseEntered
@@ -301,10 +248,6 @@ public class membersForm extends javax.swing.JFrame {
         update.setBackground(navcolor);
     }//GEN-LAST:event_updateMouseExited
 
-    private void search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_search1ActionPerformed
-
     private void search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_search2ActionPerformed
@@ -313,9 +256,9 @@ public class membersForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_search3ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void StatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_StatusActionPerformed
 
     private void wrongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrongMouseClicked
    // 1. Close this popup form
@@ -345,9 +288,37 @@ public class membersForm extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_wrongMouseClicked
 
-    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        // 1. Get data from your text fields
+    String fname = search2.getText(); // First Name field
+    String lname = search3.getText(); // Last Name field
+    String gen = male.isSelected() ? "Male" : "Female";
+    String stat = Status.getSelectedItem().toString();
+
+    // 2. The SQL query skipping m_id
+    String sql = "INSERT INTO members (m_fname, m_lname, m_gender, m_status) VALUES (?, ?, ?, ?)";
+
+    try {
+        config.configclass conf = new config.configclass();
+        java.sql.Connection conn = conf.connectDB();
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+
+        // 3. Match the parameters to the 4 question marks above
+        pst.setString(1, fname); 
+        pst.setString(2, lname);
+        pst.setString(3, gen);
+        pst.setString(4, stat);
+
+        pst.executeUpdate();
+        javax.swing.JOptionPane.showMessageDialog(null, "Successfully Added!");
+
+        // 4. Refresh the table and close
+        this.dispose(); 
         
-    }//GEN-LAST:event_confirmMouseClicked
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_addMouseClicked
 
     /**
      * @param args the command line arguments
@@ -386,29 +357,24 @@ public class membersForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Status;
     private javax.swing.JPanel add;
-    private javax.swing.JButton confirm;
-    private javax.swing.JPanel delete;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JRadioButton female;
+    private javax.swing.JLabel firstname;
+    private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel lastname;
+    private javax.swing.JRadioButton male;
     private javax.swing.JPanel memberform;
-    private javax.swing.JTextField search1;
     private javax.swing.JTextField search2;
     private javax.swing.JTextField search3;
+    private javax.swing.JLabel status;
     private javax.swing.JPanel update;
     private javax.swing.JPanel wrong;
     // End of variables declaration//GEN-END:variables

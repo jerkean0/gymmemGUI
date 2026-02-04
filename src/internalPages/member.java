@@ -14,24 +14,42 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class member extends javax.swing.JInternalFrame {
 
+    // 1. The Constructor - This runs when the page opens
+    public member() {
+        initComponents();
+        displayData(); // This calls the database function
+        
+        
+        // This removes the window borders
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        javax.swing.plaf.basic.BasicInternalFrameUI bi = (javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI();
+        bi.setNorthPane(null);
+    }
+
+        public void displayData() {
+        config.configclass conf = new config.configclass();
+        // This query fetches the auto-generated ID as the first column
+        String query = "SELECT m_id AS 'ID', m_fname AS 'First Name', m_lname AS 'Last Name', "
+                     + "m_gender AS 'Gender', m_status AS 'Status' FROM members";
+        conf.displayData(query, membersTable);
+}
+   
+    
+    // DO NOT DELETE THE "Generated Code" below this line!
+
     /**
      * Creates new form userPage
      */
-    public member() {
-        initComponents();
+   
         
-      this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
-      BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
-      bi.setNorthPane(null);
-      
-      
-      search.setOpaque(false);
-      search.setBackground(new Color (0, 0, 0, 0 ));
-      
-    }
+        
+        
+        
+    
+   
      Color navcolor = new Color (102,102,102);
-     Color headcolor = new Color (51,51,51);
-     Color bodycolor = new Color (153,153,153);
+        Color headcolor = new Color (51,51,51);
+        Color bodycolor = new Color (153,153,153);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +66,7 @@ public class member extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        membersTable = new javax.swing.JTable();
         delete = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         add = new javax.swing.JPanel();
@@ -58,6 +76,8 @@ public class member extends javax.swing.JInternalFrame {
         search = new javax.swing.JTextField();
         search_button = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        refresh = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -105,18 +125,23 @@ public class member extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        membersTable.setAutoCreateRowSorter(true);
+        membersTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        membersTable.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        membersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "member ID", "First Name", "Last Name", "Gender", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        membersTable.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        membersTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
+        jScrollPane1.setViewportView(membersTable);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 700, 280));
 
@@ -187,6 +212,11 @@ public class member extends javax.swing.JInternalFrame {
         search.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         search.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         search.setOpaque(false);
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
@@ -196,6 +226,9 @@ public class member extends javax.swing.JInternalFrame {
 
         search_button.setBackground(new java.awt.Color(102, 102, 102));
         search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                search_buttonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 search_buttonMouseEntered(evt);
             }
@@ -213,6 +246,38 @@ public class member extends javax.swing.JInternalFrame {
         search_button.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
         jPanel3.add(search_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 80, 30));
+
+        refresh.setBackground(new java.awt.Color(153, 153, 153));
+        refresh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refreshMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refreshMouseExited(evt);
+            }
+        });
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png"))); // NOI18N
+
+        javax.swing.GroupLayout refreshLayout = new javax.swing.GroupLayout(refresh);
+        refresh.setLayout(refreshLayout);
+        refreshLayout.setHorizontalGroup(
+            refreshLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+        );
+        refreshLayout.setVerticalGroup(
+            refreshLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, refreshLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel3.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 30, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 750, 380));
 
@@ -264,6 +329,35 @@ public class member extends javax.swing.JInternalFrame {
     mf.setLocationRelativeTo(null); // Centers the form on screen
     }//GEN-LAST:event_addMouseClicked
 
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchMouseClicked
+
+    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
+    config.configclass conf = new config.configclass();
+    String txt = search.getText(); // 'search' is the name of your text field
+    
+    // This query looks for the text in either the First Name or Last Name
+    String query = "SELECT m_id AS 'ID', m_fname AS 'First Name', m_lname AS 'Last Name', "
+                 + "m_gender AS 'Gender', m_status AS 'Status' FROM members "
+                 + "WHERE m_fname LIKE '%" + txt + "%' OR m_lname LIKE '%" + txt + "%'";
+    
+    conf.displayData(query, membersTable);  
+    }//GEN-LAST:event_search_buttonMouseClicked
+
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+    displayData(); 
+    search.setText("");      
+    }//GEN-LAST:event_refreshMouseClicked
+
+    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
+     refresh.setBackground(bodycolor);
+    }//GEN-LAST:event_refreshMouseEntered
+
+    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
+     refresh.setBackground(navcolor);
+    }//GEN-LAST:event_refreshMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel add;
@@ -273,13 +367,15 @@ public class member extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable membersTable;
+    private javax.swing.JPanel refresh;
     private javax.swing.JTextField search;
     private javax.swing.JPanel search_button;
     private javax.swing.JPanel update;
