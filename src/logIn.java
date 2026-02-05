@@ -1,4 +1,5 @@
 
+import config.Session;
 import config.configclass;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -129,32 +130,38 @@ public class logIn extends javax.swing.JFrame {
 
     private void siginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siginActionPerformed
     configclass conf = new configclass();
-    Connection conn = conf.connectDB();
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+Connection conn = conf.connectDB();
+PreparedStatement pst = null;
+ResultSet rs = null;
 
-    try {
-        // 'users' is the table name, 'username' and 'password' are the columns
-        String sql = "SELECT * FROM users WHERE u_username = ? AND u_password = ?";
-        pst = conn.prepareStatement(sql);
-        pst.setString(1, uname1.getText()); // Your username field
-        pst.setString(2, passField.getText()); // Your password field
-        
-        rs = pst.executeQuery();
-        
-        if (rs.next()) {
-            JOptionPane.showMessageDialog(null, "Login Successful!");
-            dashboard ds = new dashboard();
-            ds.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Username or Password", "Access Denied", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
-    } finally {
-        try { rs.close(); pst.close(); conn.close(); } catch (Exception e) {}
+try {
+    String sql = "SELECT * FROM users WHERE u_username = ? AND u_password = ?";
+    pst = conn.prepareStatement(sql);
+    pst.setString(1, uname1.getText()); 
+    pst.setString(2, passField.getText()); 
+    
+    rs = pst.executeQuery();
+    
+    if (rs.next()) {
+        // --- ADD THESE SESSION LINES HERE ---
+        Session sess = Session.getInstance();
+        sess.setId(rs.getInt("u_id"));       // Gets the ID
+        sess.setName(rs.getString("u_fname")); // Gets the First Name
+        sess.setEmail(rs.getString("u_email")); // Gets the Email
+        // -------------------------------------
+
+        JOptionPane.showMessageDialog(null, "Login Successful!");
+        dashboard ds = new dashboard();
+        ds.setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Invalid Username or Password", "Access Denied", JOptionPane.ERROR_MESSAGE);
     }
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(null, e);
+} finally {
+    try { rs.close(); pst.close(); conn.close(); } catch (Exception e) {}
+}
     }//GEN-LAST:event_siginActionPerformed
 
     private void siginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siginMouseExited

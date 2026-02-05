@@ -6,6 +6,7 @@
     import java.awt.Color;
     import internalPages.*;
     import internalPages.dashBoardPage;
+    import config.Session;
     
 /**
  *
@@ -211,7 +212,15 @@ public class dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_paymentsMouseExited
 
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
-        
+    userprofile up = new userprofile();
+    maindesktop.add(up).setVisible(true);
+    
+    Session sess = Session.getInstance();
+    
+    // This fills the labels you see in image_bf27a8.png
+    up.p_name.setText(sess.getName()); 
+    up.p_id.setText("" + sess.getId()); 
+    up.p_email.setText(sess.getEmail());
     }//GEN-LAST:event_accountMouseClicked
 
     private void dashlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashlogoutActionPerformed
