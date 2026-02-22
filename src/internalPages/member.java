@@ -6,7 +6,9 @@
 package internalPages;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.TableModel;
 
 /**import internalPages.membersForm;
  *
@@ -14,13 +16,14 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class member extends javax.swing.JInternalFrame {
 
-    // 1. The Constructor - This runs when the page opens
+        
+   
     public member() {
         initComponents();
-        displayData(); // This calls the database function
+        displayData(); 
         
         
-        // This removes the window borders
+       
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         javax.swing.plaf.basic.BasicInternalFrameUI bi = (javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
@@ -28,7 +31,7 @@ public class member extends javax.swing.JInternalFrame {
 
         public void displayData() {
         config.configclass conf = new config.configclass();
-        // This query fetches the auto-generated ID as the first column
+       
         String query = "SELECT m_id AS 'ID', m_fname AS 'First Name', m_lname AS 'Last Name', "
                      + "m_gender AS 'Gender', m_status AS 'Status' FROM members";
         conf.displayData(query, membersTable);
@@ -147,6 +150,9 @@ public class member extends javax.swing.JInternalFrame {
 
         delete.setBackground(new java.awt.Color(102, 102, 102));
         delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 deleteMouseEntered(evt);
             }
@@ -190,6 +196,9 @@ public class member extends javax.swing.JInternalFrame {
 
         update.setBackground(new java.awt.Color(102, 102, 102));
         update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 updateMouseEntered(evt);
             }
@@ -309,9 +318,9 @@ public class member extends javax.swing.JInternalFrame {
 
     private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
         config.configclass conf = new config.configclass();
-        String txt = search.getText(); // 'search' is the name of your text field
+        String txt = search.getText(); 
 
-        // This query looks for the text in either the First Name or Last Name
+        
         String query = "SELECT m_id AS 'ID', m_fname AS 'First Name', m_lname AS 'Last Name', "
         + "m_gender AS 'Gender', m_status AS 'Status' FROM members "
         + "WHERE m_fname LIKE '%" + txt + "%' OR m_lname LIKE '%" + txt + "%'";
@@ -347,7 +356,7 @@ public class member extends javax.swing.JInternalFrame {
         membersForm mf = new membersForm();
         mf.setVisible(true);
         mf.pack();
-        mf.setLocationRelativeTo(null); // Centers the form on screen
+        mf.setLocationRelativeTo(null); 
     }//GEN-LAST:event_addMouseClicked
 
     private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
@@ -358,14 +367,75 @@ public class member extends javax.swing.JInternalFrame {
         delete.setBackground(bodycolor);
     }//GEN-LAST:event_deleteMouseEntered
 
+    private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
+                                 
+    int row = membersTable.getSelectedRow();
+    
+    if (row != -1) { 
+        TableModel model = membersTable.getModel();
+        membersForm mf = new membersForm();
+
+        mf.id = model.getValueAt(row, 0).toString();
+ 
+        mf.fname.setText(model.getValueAt(row, 1).toString());
+        mf.lname.setText(model.getValueAt(row, 2).toString());
+
+        String gn = model.getValueAt(row, 3).toString();
+        if(gn.equals("Male")) { mf.male.setSelected(true); }
+        else { mf.female.setSelected(true); }
+  
+        mf.Status.setSelectedItem(model.getValueAt(row, 4).toString());
+        
+        mf.setVisible(true);
+        
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(null, "Please select a member from the table first!");
+    }
+    }//GEN-LAST:event_updateMouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+     // 1. Get the selected row from the table
+    int row = membersTable.getSelectedRow(); 
+    
+    if (row == -1) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Please select a member from the table first!");
+    } else {
+        // 2. Confirm deletion
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this member?", "Warning", javax.swing.JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            // 3. Get the ID directly from Column 0 of the selected row
+            String selectedId = membersTable.getModel().getValueAt(row, 0).toString();
+            String sql = "DELETE FROM members WHERE m_id = ?";
+
+            try {
+                config.configclass conf = new config.configclass();
+                java.sql.Connection conn = conf.connectDB();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+
+                pst.setString(1, selectedId); // Use the ID we just pulled from the table row
+
+                pst.executeUpdate();
+                javax.swing.JOptionPane.showMessageDialog(null, "Member Deleted Successfully!");
+                
+                // 4. Refresh the table so the person disappears
+                displayData(); 
+
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+            }
+        }
+    }
+    }//GEN-LAST:event_deleteMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel add;
-    private javax.swing.JPanel delete;
+    public javax.swing.JPanel add;
+    public javax.swing.JPanel delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -374,10 +444,12 @@ public class member extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable membersTable;
+    public javax.swing.JTable membersTable;
     private javax.swing.JPanel refresh;
     private javax.swing.JTextField search;
     private javax.swing.JPanel search_button;
-    private javax.swing.JPanel update;
+    public javax.swing.JPanel update;
     // End of variables declaration//GEN-END:variables
+
+  
 }

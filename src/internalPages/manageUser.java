@@ -22,10 +22,10 @@ public class manageUser extends javax.swing.JInternalFrame {
         displayData(); 
     }
 
-    // Move the actual function definition DOWN here, outside the constructor
+    
     public void displayData() {
     config.configclass cc = new config.configclass();
-    // Removed the last name column to match your database structure
+   
     cc.displayData("SELECT u_id as 'ID', u_fname as 'First Name', "
                  + "u_email as 'Email', u_phone as 'Phone', u_username as 'Username', "
                  + "u_status as 'Status' FROM users", user_table);

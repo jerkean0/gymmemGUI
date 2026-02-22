@@ -17,9 +17,8 @@ import javax.swing.SwingUtilities;
  */
 public class membersForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form memberForm
-     */
+    public String id;
+   
     public membersForm() {
         initComponents();
     }
@@ -50,8 +49,8 @@ public class membersForm extends javax.swing.JFrame {
         status = new javax.swing.JLabel();
         firstname = new javax.swing.JLabel();
         lastname = new javax.swing.JLabel();
-        search2 = new javax.swing.JTextField();
-        search3 = new javax.swing.JTextField();
+        fname = new javax.swing.JTextField();
+        lname = new javax.swing.JTextField();
         male = new javax.swing.JRadioButton();
         female = new javax.swing.JRadioButton();
         gender = new javax.swing.JLabel();
@@ -127,12 +126,15 @@ public class membersForm extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ADD");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+        add.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        jPanel3.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 80, 30));
+        jPanel3.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 150, 30));
 
         update.setBackground(new java.awt.Color(102, 102, 102));
         update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 updateMouseEntered(evt);
             }
@@ -147,9 +149,9 @@ public class membersForm extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("UPDATE");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        update.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
+        update.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        jPanel3.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 80, -1));
+        jPanel3.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 150, -1));
 
         status.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         status.setText("Status:");
@@ -163,27 +165,27 @@ public class membersForm extends javax.swing.JFrame {
         lastname.setText("Last Name:");
         jPanel3.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, 30));
 
-        search2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        search2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        search2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        search2.setOpaque(false);
-        search2.addActionListener(new java.awt.event.ActionListener() {
+        fname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        fname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fname.setOpaque(false);
+        fname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                search2ActionPerformed(evt);
+                fnameActionPerformed(evt);
             }
         });
-        jPanel3.add(search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 200, 30));
+        jPanel3.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 200, 30));
 
-        search3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        search3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        search3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        search3.setOpaque(false);
-        search3.addActionListener(new java.awt.event.ActionListener() {
+        lname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lname.setOpaque(false);
+        lname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                search3ActionPerformed(evt);
+                lnameActionPerformed(evt);
             }
         });
-        jPanel3.add(search3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, 30));
+        jPanel3.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, 30));
 
         male.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         male.setText("MALE");
@@ -248,13 +250,13 @@ public class membersForm extends javax.swing.JFrame {
         update.setBackground(navcolor);
     }//GEN-LAST:event_updateMouseExited
 
-    private void search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search2ActionPerformed
+    private void fnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_search2ActionPerformed
+    }//GEN-LAST:event_fnameActionPerformed
 
-    private void search3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search3ActionPerformed
+    private void lnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_search3ActionPerformed
+    }//GEN-LAST:event_lnameActionPerformed
 
     private void StatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusActionPerformed
         // TODO add your handling code here:
@@ -289,13 +291,13 @@ public class membersForm extends javax.swing.JFrame {
     }//GEN-LAST:event_wrongMouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-        // 1. Get data from your text fields
-    String fname = search2.getText(); // First Name field
-    String lname = search3.getText(); // Last Name field
+       
+    String fname = this.fname.getText(); 
+    String lname = this.lname.getText();
     String gen = male.isSelected() ? "Male" : "Female";
     String stat = Status.getSelectedItem().toString();
 
-    // 2. The SQL query skipping m_id
+    
     String sql = "INSERT INTO members (m_fname, m_lname, m_gender, m_status) VALUES (?, ?, ?, ?)";
 
     try {
@@ -303,7 +305,7 @@ public class membersForm extends javax.swing.JFrame {
         java.sql.Connection conn = conf.connectDB();
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
 
-        // 3. Match the parameters to the 4 question marks above
+      
         pst.setString(1, fname); 
         pst.setString(2, lname);
         pst.setString(3, gen);
@@ -312,13 +314,47 @@ public class membersForm extends javax.swing.JFrame {
         pst.executeUpdate();
         javax.swing.JOptionPane.showMessageDialog(null, "Successfully Added!");
 
-        // 4. Refresh the table and close
+       
         this.dispose(); 
         
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
     }
     }//GEN-LAST:event_addMouseClicked
+
+    private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
+    
+    String f_name = fname.getText();
+    String l_name = lname.getText();
+    String gen = male.isSelected() ? "Male" : "Female";
+    String stat = Status.getSelectedItem().toString();
+
+   
+    String sql = "UPDATE members SET m_fname = ?, m_lname = ?, m_gender = ?, m_status = ? WHERE m_id = ?";
+
+    try {
+        
+        config.configclass conf = new config.configclass();
+        java.sql.Connection conn = conf.connectDB();
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+
+      
+        pst.setString(1, f_name);
+        pst.setString(2, l_name);
+        pst.setString(3, gen);
+        pst.setString(4, stat);
+        pst.setString(5, id); 
+
+        pst.executeUpdate();
+        javax.swing.JOptionPane.showMessageDialog(null, "Successfully Updated!");
+        
+        
+        this.dispose();
+
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_updateMouseClicked
 
     /**
      * @param args the command line arguments
@@ -357,25 +393,27 @@ public class membersForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Status;
-    private javax.swing.JPanel add;
-    private javax.swing.JRadioButton female;
+    public javax.swing.JComboBox<String> Status;
+    public javax.swing.JPanel add;
+    public javax.swing.JRadioButton female;
     private javax.swing.JLabel firstname;
+    public javax.swing.JTextField fname;
     private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lastname;
-    private javax.swing.JRadioButton male;
+    public javax.swing.JTextField lname;
+    public javax.swing.JRadioButton male;
     private javax.swing.JPanel memberform;
-    private javax.swing.JTextField search2;
-    private javax.swing.JTextField search3;
     private javax.swing.JLabel status;
-    private javax.swing.JPanel update;
+    public javax.swing.JPanel update;
     private javax.swing.JPanel wrong;
     // End of variables declaration//GEN-END:variables
+
+
 }

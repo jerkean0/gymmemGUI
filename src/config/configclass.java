@@ -9,11 +9,11 @@ import net.proteanit.sql.DbUtils;
 
 public class configclass {
     
-    // Single Connection Method to ensure consistency
+    
     public Connection connectDB() {
         try {
             Class.forName("org.sqlite.JDBC");
-            // Fixed the typo in the file name to gymsystem.db
+           
             Connection con = DriverManager.getConnection("jdbc:sqlite:gymsystem.db");
             return con;
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class configclass {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getString("u_status"); // Updated to match your column name
+                    return rs.getString("u_status"); 
                 }
             }
         } catch (SQLException e) {

@@ -9,14 +9,14 @@ import java.awt.Color;
 
 /**
  *
- * @author USER42
+ * @author Admin
  */
-public class userprofile extends javax.swing.JInternalFrame {
-
+public class editProfileForm extends javax.swing.JFrame {
+    public String id;
     /**
-     * Creates new form accountsettings
+     * Creates new form editProfileForm
      */
-    public userprofile() {
+    public editProfileForm() {
         initComponents();
     }
     Color navcolor = new Color (102,102,102);
@@ -38,11 +38,11 @@ public class userprofile extends javax.swing.JInternalFrame {
         ID = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        p_email = new javax.swing.JLabel();
-        p_name = new javax.swing.JLabel();
-        p_id = new javax.swing.JLabel();
+        p_email = new javax.swing.JTextField();
+        p_name = new javax.swing.JTextField();
+        p_id = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        editProfile = new javax.swing.JPanel();
+        confirmEdit = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         username1 = new javax.swing.JLabel();
         manageUser1 = new javax.swing.JPanel();
@@ -86,54 +86,52 @@ public class userprofile extends javax.swing.JInternalFrame {
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 160, 140));
 
-        p_email.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        p_email.setForeground(new java.awt.Color(204, 204, 204));
-        p_email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        p_email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.add(p_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 180, 30));
+        p_email.setBackground(new java.awt.Color(102, 102, 102));
+        p_email.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        p_email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel2.add(p_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 200, 30));
 
-        p_name.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
-        p_name.setForeground(new java.awt.Color(204, 204, 204));
-        p_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        p_name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.add(p_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 180, 30));
+        p_name.setBackground(new java.awt.Color(102, 102, 102));
+        p_name.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        p_name.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel2.add(p_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 200, 30));
 
-        p_id.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        p_id.setForeground(new java.awt.Color(204, 204, 204));
-        p_id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        p_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.add(p_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 180, 30));
+        p_id.setEditable(false);
+        p_id.setBackground(new java.awt.Color(102, 102, 102));
+        p_id.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        p_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel2.add(p_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 200, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 190));
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editProfile.setBackground(new java.awt.Color(204, 204, 204));
-        editProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+        confirmEdit.setBackground(new java.awt.Color(204, 204, 204));
+        confirmEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editProfileMouseClicked(evt);
+                confirmEditMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                editProfileMouseEntered(evt);
+                confirmEditMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                editProfileMouseExited(evt);
+                confirmEditMouseExited(evt);
             }
         });
-        editProfile.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        confirmEdit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/edit profile.png"))); // NOI18N
-        editProfile.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 110));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/confirmedit.png"))); // NOI18N
+        confirmEdit.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 110));
 
         username1.setBackground(new java.awt.Color(0, 0, 0));
         username1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         username1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        username1.setText("EDIT PROFILE");
-        editProfile.add(username1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, -1));
+        username1.setText("CONFIRM EDIT");
+        confirmEdit.add(username1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, -1));
 
-        jPanel3.add(editProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 170, 150));
+        jPanel3.add(confirmEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 170, 150));
 
         manageUser1.setBackground(new java.awt.Color(204, 204, 204));
         manageUser1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,29 +185,57 @@ public class userprofile extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 690, 210));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 420));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfileMouseEntered
-        editProfile.setBackground(navcolor);
-    }//GEN-LAST:event_editProfileMouseEntered
+    private void confirmEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmEditMouseClicked
+    String sql = "UPDATE users SET u_fname = ?, u_email = ? WHERE u_id = ?";
+    
+    try {
+        config.configclass conf = new config.configclass();
+        java.sql.Connection conn = conf.connectDB();
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        
+        pst.setString(1, p_name.getText());
+        pst.setString(2, p_email.getText());
+        pst.setString(3, p_id.getText());
+        
+        int rowsUpdated = pst.executeUpdate();
+        
+        if (rowsUpdated > 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Successfully Updated!");
+            
+            // --- REFRESH LOGIC STARTS HERE ---
+            // If you are using a DesktopPane or a specific Panel to hold these pages:
+            // You can call the display method of the parent if it's accessible.
+            
+            this.dispose(); // Closes the edit window
+        }
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_confirmEditMouseClicked
 
-    private void editProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfileMouseExited
-        editProfile.setBackground(headcolor);
-    }//GEN-LAST:event_editProfileMouseExited
+    private void confirmEditMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmEditMouseEntered
+        confirmEdit.setBackground(navcolor);
+    }//GEN-LAST:event_confirmEditMouseEntered
+
+    private void confirmEditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmEditMouseExited
+        confirmEdit.setBackground(headcolor);
+    }//GEN-LAST:event_confirmEditMouseExited
 
     private void manageUser1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUser1MouseEntered
-        manageUser1.setBackground(navcolor);
+        confirmEdit.setBackground(navcolor);
     }//GEN-LAST:event_manageUser1MouseEntered
 
     private void manageUser1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUser1MouseExited
-        manageUser1.setBackground(headcolor);
+        confirmEdit.setBackground(headcolor);
     }//GEN-LAST:event_manageUser1MouseExited
 
     private void membersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseClicked
- 
+
     }//GEN-LAST:event_membersMouseClicked
 
     private void membersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseEntered
@@ -219,25 +245,13 @@ public class userprofile extends javax.swing.JInternalFrame {
     private void membersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseExited
         members.setBackground(headcolor);
     }//GEN-LAST:event_membersMouseExited
-
-    private void editProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfileMouseClicked
-  editProfileForm epf = new editProfileForm();
     
-    // We pull text from p_id, p_name, and p_email because 
-    // these contain the RAW data (e.g., "1") without the "User ID:" prefix.
-    epf.p_id.setText(p_id.getText()); 
-    epf.p_name.setText(p_name.getText()); 
-    epf.p_email.setText(p_email.getText());
-    
-    epf.setVisible(true);
-    }//GEN-LAST:event_editProfileMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel ID;
-    private javax.swing.JPanel editProfile;
-    public javax.swing.JLabel email;
-    public javax.swing.JLabel fullname;
+    private javax.swing.JLabel ID;
+    private javax.swing.JPanel confirmEdit;
+    private javax.swing.JLabel email;
+    private javax.swing.JLabel fullname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,9 +262,9 @@ public class userprofile extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel manageUser1;
     private javax.swing.JPanel members;
-    public javax.swing.JLabel p_email;
-    public javax.swing.JLabel p_id;
-    public javax.swing.JLabel p_name;
+    public javax.swing.JTextField p_email;
+    public javax.swing.JTextField p_id;
+    public javax.swing.JTextField p_name;
     private javax.swing.JLabel username1;
     private javax.swing.JLabel username2;
     private javax.swing.JLabel username3;
