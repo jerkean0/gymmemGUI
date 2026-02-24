@@ -19,19 +19,31 @@ public class dashboard extends javax.swing.JFrame {
      */
     public dashboard() {
         initComponents();
-        initComponents();
-        Session sess = Session.getInstance();
-        String userRole = sess.getType(); 
+        // 1. GET THE SESSION INSTANCE
+    Session sess = Session.getInstance();
+    
+    // 2. CHECK IF LOGGED IN (REQUIRED)
+    // If ID is 0, it means the user skipped the login screen
+    if (sess.getId() == 0) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Login Required! Please log in first.");
+        
+        // Open the Landing Page (or Login)
+        landingpage lp = new landingpage();
+        lp.setVisible(true);
+        
+        // Kill this dashboard window immediately
+        this.dispose(); 
+        return; // Stop further execution
+    }
 
-        if (userRole != null && userRole.equals("Staff")) {
-            // Keeps them visible but makes them unclickable (grayed out)
-            userpane.setEnabled(false);        
-            membershipPlans.setEnabled(false); 
-
-            // If you have icons/labels inside the panels, disable them too
-            jLabel4.setEnabled(false); // The "ACTIVE" label
-            jLabel5.setEnabled(false); // The "MEMBERSHIP PLANS" label
-        }
+    // 3. ROLE-BASED RESTRICTIONS (Your existing code)
+    String userRole = sess.getType(); 
+    if (userRole != null && userRole.equals("Staff")) {
+        userpane.setEnabled(false);        
+        membershipPlans.setEnabled(false); 
+        jLabel4.setEnabled(false); 
+        jLabel5.setEnabled(false); 
+    }
         
     }
      Color navcolor = new Color (102,102,102);
@@ -115,6 +127,9 @@ public class dashboard extends javax.swing.JFrame {
 
         payments.setBackground(new java.awt.Color(102, 102, 102));
         payments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentsMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 paymentsMouseEntered(evt);
             }
@@ -289,6 +304,22 @@ public class dashboard extends javax.swing.JFrame {
     private void membershipPlansMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membershipPlansMouseExited
        membershipPlans.setBackground(navcolor);
     }//GEN-LAST:event_membershipPlansMouseExited
+
+    private void paymentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsMouseClicked
+    // 1. Create the instance of the internal frame
+    managePayments mp = new managePayments(); 
+    
+    // 2. Use your new variable name: maindesktop
+    maindesktop.removeAll(); 
+    maindesktop.add(mp);
+    
+    // 3. Make the internal frame visible inside the desktop
+    mp.setVisible(true);
+    
+    // 4. Refresh the UI so the page appears immediately
+    maindesktop.revalidate();
+    maindesktop.repaint();
+    }//GEN-LAST:event_paymentsMouseClicked
 
     /**
      * @param args the command line arguments

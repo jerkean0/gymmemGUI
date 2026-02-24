@@ -19,7 +19,37 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
      */
     public dashBoardPage() {
         initComponents();
+        // Check the Singleton Session instance
+    // Check the Singleton Session instance
+    config.Session ses = config.Session.getInstance();
+
+    // If the ID is 0, it means no user data was saved during login
+    if (ses.getId() == 0) {
+        javax.swing.JOptionPane.showMessageDialog(null, "No Session Found. Please Login.");
         
+        try {
+            // FIX: Use Reflection to open a class from the Default Package
+            Class<?> loginClass = Class.forName("logIn");
+            Object loginInstance = loginClass.getDeclaredConstructor().newInstance();
+            loginClass.getMethod("setVisible", boolean.class).invoke(loginInstance, true);
+            
+            // Close the current internal page
+            this.dispose(); 
+            
+            // Also close the main Dashboard frame that holds this internal frame
+            javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+            
+        } catch (Exception e) {
+            System.out.println("Error: Could not find logIn class. " + e.getMessage());
+        }
+    } else {
+        // Continue with normal setup
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        javax.swing.plaf.basic.BasicInternalFrameUI bi = (javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI();
+        bi.setNorthPane(null);
+    
+    
+    }
       this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
       BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
       bi.setNorthPane(null);

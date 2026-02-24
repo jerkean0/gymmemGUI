@@ -159,7 +159,7 @@ public class createUserForm extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 60));
 
-        update.setBackground(new java.awt.Color(102, 102, 102));
+        update.setBackground(new java.awt.Color(204, 204, 204));
         update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         update.setText("UPDATE USER");
         update.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +190,7 @@ public class createUserForm extends javax.swing.JInternalFrame {
         });
         jPanel1.add(utype, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 90, 40));
 
-        add.setBackground(new java.awt.Color(0, 0, 0));
+        add.setBackground(new java.awt.Color(255, 255, 255));
         add.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add.setForeground(new java.awt.Color(51, 51, 51));
         add.setText("ADD USER");
