@@ -387,6 +387,7 @@ public class member extends javax.swing.JInternalFrame {
         mf.Status.setSelectedItem(model.getValueAt(row, 4).toString());
         
         mf.setVisible(true);
+        mf.setLocationRelativeTo(null); 
         
     } else {
         javax.swing.JOptionPane.showMessageDialog(null, "Please select a member from the table first!");

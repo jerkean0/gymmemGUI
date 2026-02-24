@@ -68,4 +68,8 @@ public class configclass {
             System.out.println("Error displaying data: " + e.getMessage());
         }
     }
+
+    public void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

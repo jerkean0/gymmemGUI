@@ -114,7 +114,7 @@ public class landingpage extends javax.swing.JFrame {
     register reg = new register(); 
     reg.setVisible(true);
     this.dispose();
-      
+     reg.setLocationRelativeTo(null); 
     }//GEN-LAST:event_registernewaccActionPerformed
 
     private void jLabel2RegistrationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2RegistrationMouseClicked
@@ -125,6 +125,7 @@ public class landingpage extends javax.swing.JFrame {
     logIn loginFrame = new logIn();
     loginFrame.setVisible(true);
     this.dispose();
+     loginFrame.setLocationRelativeTo(null); 
     }//GEN-LAST:event_loginActionPerformed
 
     /**

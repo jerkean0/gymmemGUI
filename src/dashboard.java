@@ -19,6 +19,19 @@ public class dashboard extends javax.swing.JFrame {
      */
     public dashboard() {
         initComponents();
+        initComponents();
+        Session sess = Session.getInstance();
+        String userRole = sess.getType(); 
+
+        if (userRole != null && userRole.equals("Staff")) {
+            // Keeps them visible but makes them unclickable (grayed out)
+            userpane.setEnabled(false);        
+            membershipPlans.setEnabled(false); 
+
+            // If you have icons/labels inside the panels, disable them too
+            jLabel4.setEnabled(false); // The "ACTIVE" label
+            jLabel5.setEnabled(false); // The "MEMBERSHIP PLANS" label
+        }
         
     }
      Color navcolor = new Color (102,102,102);
@@ -44,6 +57,8 @@ public class dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         userpane = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        membershipPlans = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         dashlogout = new javax.swing.JButton();
         maindesktop = new javax.swing.JDesktopPane();
@@ -114,7 +129,7 @@ public class dashboard extends javax.swing.JFrame {
         jLabel2.setText("PAYMENTS");
         payments.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
 
-        navbar.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 170, 40));
+        navbar.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 170, 40));
 
         userpane.setBackground(new java.awt.Color(102, 102, 102));
         userpane.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,6 +151,24 @@ public class dashboard extends javax.swing.JFrame {
         userpane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
 
         navbar.add(userpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 170, 40));
+
+        membershipPlans.setBackground(new java.awt.Color(102, 102, 102));
+        membershipPlans.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                membershipPlansMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                membershipPlansMouseExited(evt);
+            }
+        });
+        membershipPlans.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("MEMBERSHIP PLANS");
+        membershipPlans.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
+
+        navbar.add(membershipPlans, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 170, 40));
 
         jPanel1.add(navbar);
         navbar.setBounds(0, 0, 170, 470);
@@ -249,6 +282,14 @@ public class dashboard extends javax.swing.JFrame {
      userpane.setBackground(navcolor);
     }//GEN-LAST:event_userpaneMouseExited
 
+    private void membershipPlansMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membershipPlansMouseEntered
+       membershipPlans.setBackground(bodycolor);
+    }//GEN-LAST:event_membershipPlansMouseEntered
+
+    private void membershipPlansMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membershipPlansMouseExited
+       membershipPlans.setBackground(navcolor);
+    }//GEN-LAST:event_membershipPlansMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -294,8 +335,10 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JDesktopPane maindesktop;
+    private javax.swing.JPanel membershipPlans;
     private javax.swing.JPanel navbar;
     private javax.swing.JPanel payments;
     private javax.swing.JPanel userpane;

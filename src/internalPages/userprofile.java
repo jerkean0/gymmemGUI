@@ -18,6 +18,20 @@ public class userprofile extends javax.swing.JInternalFrame {
      */
     public userprofile() {
         initComponents();
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+
+    // Auto center when opened
+    javax.swing.SwingUtilities.invokeLater(() -> {
+        if (getParent() != null) {
+            int x = (getParent().getWidth() - getWidth()) / 2;
+            int y = (getParent().getHeight() - getHeight()) / 2;
+            setLocation(x, y);
+        }
+    });
+        
+         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
     Color navcolor = new Color (102,102,102);
      Color headcolor = new Color (51,51,51);
@@ -45,10 +59,10 @@ public class userprofile extends javax.swing.JInternalFrame {
         editProfile = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         username1 = new javax.swing.JLabel();
-        manageUser1 = new javax.swing.JPanel();
+        reports = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         username2 = new javax.swing.JLabel();
-        members = new javax.swing.JPanel();
+        logout = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         username3 = new javax.swing.JLabel();
 
@@ -135,55 +149,55 @@ public class userprofile extends javax.swing.JInternalFrame {
 
         jPanel3.add(editProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 170, 150));
 
-        manageUser1.setBackground(new java.awt.Color(204, 204, 204));
-        manageUser1.addMouseListener(new java.awt.event.MouseAdapter() {
+        reports.setBackground(new java.awt.Color(204, 204, 204));
+        reports.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                manageUser1MouseEntered(evt);
+                reportsMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                manageUser1MouseExited(evt);
+                reportsMouseExited(evt);
             }
         });
-        manageUser1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        reports.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reports.png"))); // NOI18N
-        manageUser1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 110));
+        reports.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 110));
 
         username2.setBackground(new java.awt.Color(0, 0, 0));
         username2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         username2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         username2.setText("REPORTS");
-        manageUser1.add(username2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 20));
+        reports.add(username2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 20));
 
-        jPanel3.add(manageUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 170, 150));
+        jPanel3.add(reports, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 170, 150));
 
-        members.setBackground(new java.awt.Color(204, 204, 204));
-        members.setPreferredSize(new java.awt.Dimension(160, 160));
-        members.addMouseListener(new java.awt.event.MouseAdapter() {
+        logout.setBackground(new java.awt.Color(204, 204, 204));
+        logout.setPreferredSize(new java.awt.Dimension(160, 160));
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                membersMouseClicked(evt);
+                logoutMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                membersMouseEntered(evt);
+                logoutMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                membersMouseExited(evt);
+                logoutMouseExited(evt);
             }
         });
-        members.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        logout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logout.png"))); // NOI18N
-        members.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 110));
+        logout.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 110));
 
         username3.setBackground(new java.awt.Color(0, 0, 0));
         username3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         username3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         username3.setText("LOG OUT");
-        members.add(username3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, -1));
+        logout.add(username3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, -1));
 
-        jPanel3.add(members, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, 150));
+        jPanel3.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, 150));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 690, 210));
 
@@ -200,25 +214,43 @@ public class userprofile extends javax.swing.JInternalFrame {
         editProfile.setBackground(headcolor);
     }//GEN-LAST:event_editProfileMouseExited
 
-    private void manageUser1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUser1MouseEntered
-        manageUser1.setBackground(navcolor);
-    }//GEN-LAST:event_manageUser1MouseEntered
+    private void reportsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsMouseEntered
+        reports.setBackground(navcolor);
+    }//GEN-LAST:event_reportsMouseEntered
 
-    private void manageUser1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUser1MouseExited
-        manageUser1.setBackground(headcolor);
-    }//GEN-LAST:event_manageUser1MouseExited
+    private void reportsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportsMouseExited
+        reports.setBackground(headcolor);
+    }//GEN-LAST:event_reportsMouseExited
 
-    private void membersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseClicked
- 
-    }//GEN-LAST:event_membersMouseClicked
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+    int a = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Logout", javax.swing.JOptionPane.YES_NO_OPTION);
+    
+if (a == javax.swing.JOptionPane.YES_OPTION) {
+    // 1. Get the current window and close it
+    java.awt.Window mainFrame = javax.swing.SwingUtilities.getWindowAncestor(this);
+    if (mainFrame != null) {
+        mainFrame.dispose();
+    }
+    
+    // 2. Open the LANDING PAGE instead of login
+    try {
+        // We change "logIn" to "landingpage" to match your file name
+        Class<?> landingClass = Class.forName("landingpage"); 
+        javax.swing.JFrame landingPage = (javax.swing.JFrame) landingClass.newInstance();
+        landingPage.setVisible(true);
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Error opening landing page: " + e.getMessage());
+    }
+}
+    }//GEN-LAST:event_logoutMouseClicked
 
-    private void membersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseEntered
-        members.setBackground(navcolor);
-    }//GEN-LAST:event_membersMouseEntered
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        logout.setBackground(navcolor);
+    }//GEN-LAST:event_logoutMouseEntered
 
-    private void membersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseExited
-        members.setBackground(headcolor);
-    }//GEN-LAST:event_membersMouseExited
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        logout.setBackground(headcolor);
+    }//GEN-LAST:event_logoutMouseExited
 
     private void editProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfileMouseClicked
   editProfileForm epf = new editProfileForm();
@@ -230,6 +262,7 @@ public class userprofile extends javax.swing.JInternalFrame {
     epf.p_email.setText(p_email.getText());
     
     epf.setVisible(true);
+     epf.setLocationRelativeTo(null); 
     }//GEN-LAST:event_editProfileMouseClicked
 
 
@@ -246,11 +279,11 @@ public class userprofile extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel manageUser1;
-    private javax.swing.JPanel members;
+    private javax.swing.JPanel logout;
     public javax.swing.JLabel p_email;
     public javax.swing.JLabel p_id;
     public javax.swing.JLabel p_name;
+    private javax.swing.JPanel reports;
     private javax.swing.JLabel username1;
     private javax.swing.JLabel username2;
     private javax.swing.JLabel username3;

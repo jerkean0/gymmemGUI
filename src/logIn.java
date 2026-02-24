@@ -130,38 +130,47 @@ public class logIn extends javax.swing.JFrame {
 
     private void siginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siginActionPerformed
     configclass conf = new configclass();
-Connection conn = conf.connectDB();
-PreparedStatement pst = null;
-ResultSet rs = null;
+    Connection conn = conf.connectDB();
+    PreparedStatement pst = null;
+    ResultSet rs = null;
 
-try {
-    String sql = "SELECT * FROM users WHERE u_username = ? AND u_password = ?";
-    pst = conn.prepareStatement(sql);
-    pst.setString(1, uname1.getText()); 
-    pst.setString(2, passField.getText()); 
-    
-    rs = pst.executeQuery();
-    
-    if (rs.next()) {
-        // --- ADD THESE SESSION LINES HERE ---
-        Session sess = Session.getInstance();
-        sess.setId(rs.getInt("u_id"));       // Gets the ID
-        sess.setName(rs.getString("u_fname")); // Gets the First Name
-        sess.setEmail(rs.getString("u_email")); // Gets the Email
-        // -------------------------------------
+    try {
+        // 1. Query the database for the user
+        String sql = "SELECT * FROM users WHERE u_username = ? AND u_password = ?";
+        pst = conn.prepareStatement(sql);
+        pst.setString(1, uname1.getText()); 
+        pst.setString(2, passField.getText()); 
 
-        JOptionPane.showMessageDialog(null, "Login Successful!");
-        dashboard ds = new dashboard();
-        ds.setVisible(true);
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(null, "Invalid Username or Password", "Access Denied", JOptionPane.ERROR_MESSAGE);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            // 2. Get the status of the user
+            String status = rs.getString("u_status");
+            
+            // 3. THE BLOCKER: If the status is not 'Active', stop them here!
+            if (!status.equalsIgnoreCase("Active")) {
+                JOptionPane.showMessageDialog(null, "Your account is " + status + ". Please contact the Admin!", "Login Error", JOptionPane.WARNING_MESSAGE);
+            } else {
+                // 4. If Active, proceed with Session and Dashboard
+                Session sess = Session.getInstance();
+                sess.setId(rs.getInt("u_id"));          
+                sess.setName(rs.getString("u_fname"));    
+                sess.setEmail(rs.getString("u_email"));   
+                sess.setType(rs.getString("u_type"));     
+
+                JOptionPane.showMessageDialog(null, "Login Successful!");
+                dashboard ds = new dashboard();
+                ds.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Username or Password", "Access Denied", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+    } finally {
+        try { if(rs != null) rs.close(); if(pst != null) pst.close(); if(conn != null) conn.close(); } catch (Exception e) {}
     }
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(null, e);
-} finally {
-    try { rs.close(); pst.close(); conn.close(); } catch (Exception e) {}
-}
     }//GEN-LAST:event_siginActionPerformed
 
     private void siginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siginMouseExited

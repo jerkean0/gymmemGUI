@@ -21,6 +21,7 @@ public class membersForm extends javax.swing.JFrame {
    
     public membersForm() {
         initComponents();
+        
     }
     Color navcolor = new Color (102,102,102);
      Color headcolor = new Color (51,51,51);
@@ -58,6 +59,7 @@ public class membersForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         memberform.setBackground(new java.awt.Color(204, 204, 204));
         memberform.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
@@ -128,7 +130,7 @@ public class membersForm extends javax.swing.JFrame {
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        jPanel3.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 150, 30));
+        jPanel3.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 150, 30));
 
         update.setBackground(new java.awt.Color(102, 102, 102));
         update.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,17 +153,17 @@ public class membersForm extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         update.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
 
-        jPanel3.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 150, -1));
+        jPanel3.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 150, -1));
 
-        status.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        status.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         status.setText("Status:");
         jPanel3.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 100, 30));
 
-        firstname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        firstname.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         firstname.setText("First Name:");
         jPanel3.add(firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, 30));
 
-        lastname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        lastname.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lastname.setText("Last Name:");
         jPanel3.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, 30));
 
@@ -174,7 +176,7 @@ public class membersForm extends javax.swing.JFrame {
                 fnameActionPerformed(evt);
             }
         });
-        jPanel3.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 200, 30));
+        jPanel3.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 200, 30));
 
         lname.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         lname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -185,17 +187,17 @@ public class membersForm extends javax.swing.JFrame {
                 lnameActionPerformed(evt);
             }
         });
-        jPanel3.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, 30));
+        jPanel3.add(lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 200, 30));
 
         male.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         male.setText("MALE");
-        jPanel3.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 100, 30));
+        jPanel3.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 100, 30));
 
         female.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         female.setText("FEMALE");
-        jPanel3.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 100, 30));
+        jPanel3.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 100, 30));
 
-        gender.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        gender.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         gender.setText("Gender:");
         jPanel3.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 30));
 
@@ -206,30 +208,11 @@ public class membersForm extends javax.swing.JFrame {
                 StatusActionPerformed(evt);
             }
         });
-        jPanel3.add(Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 200, 30));
+        jPanel3.add(Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 200, 30));
 
         memberform.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 750, 380));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(memberform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(memberform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(memberform, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

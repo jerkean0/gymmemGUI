@@ -47,6 +47,7 @@ public class register extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         register = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -173,6 +174,10 @@ public class register extends javax.swing.JFrame {
         });
         jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 220, 30));
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "STAFf" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 80, 30));
+
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 540, 430));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 520));
@@ -213,45 +218,88 @@ public class register extends javax.swing.JFrame {
     }//GEN-LAST:event_registerMouseExited
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+    // 1. Get data from all text fields
     String fullName = fname.getText();
     String userEmail = email.getText();
-    String phoneNumber = uname5.getText(); // Make sure your variable name is 'phone'
+    String phoneNumber = uname5.getText(); 
     String userName = uname.getText();
     String password = pword.getText();
-    String confirmPass = cpword.getText(); // Assuming variable name 'cpword'
+    String confirmPass = cpword.getText(); 
+    
+    // 2. Get the role from your JComboBox
+    String role = jComboBox1.getSelectedItem().toString(); 
 
-    // 1. Basic Validation
+    // 3. Validation: Check if any field is empty
     if(fullName.isEmpty() || userEmail.isEmpty() || userName.isEmpty() || password.isEmpty()){
         JOptionPane.showMessageDialog(null, "All fields are required!");
     } 
-    // 2. Check if passwords match
+    // 4. Check if passwords match
     else if(!password.equals(confirmPass)){
         JOptionPane.showMessageDialog(null, "Passwords do not match!");
     }
-    // 3. If everything is okay, save to database
+    // 5. If valid, proceed to save
     else {
         configclass conf = new configclass();
         
-        String sql = "INSERT INTO users (u_fname, u_email, u_phone, u_username, u_password, u_status) "
-                   + "VALUES (?, ?, ?, ?, ?, 'Active')";
+        /* The SQL query now includes 'u_type' to prevent the constraint error.
+           There are 6 '?' placeholders for the 6 values we are passing.
+        */
+        String sql = "INSERT INTO users (u_fname, u_email, u_phone, u_username, u_password, u_status, u_type) "
+                   + "VALUES (?, ?, ?, ?, ?, 'Pending', ?)";
 
-        if(conf.insertData(sql, fullName, userEmail, phoneNumber, userName, password) == 1) {
-        JOptionPane.showMessageDialog(null, "Registration Successful!");
+        // Using your configclass method to execute the insert
+        if(conf.insertData(sql, fullName, userEmail, phoneNumber, userName, password, role) == 1) {
+            JOptionPane.showMessageDialog(null, "Registration Successful! Account is now PENDING.");
 
-        // 1. Create the Login window object
-        logIn loginFrame = new logIn(); 
-
-        // 2. Make it visible to the user
-        loginFrame.setVisible(true); 
-
-        // 3. Close the current Registration window
-        this.dispose(); 
-    }
+            // Redirect back to Login
+            logIn loginFrame = new logIn(); 
+            loginFrame.setVisible(true); 
+            this.dispose(); 
+        } else {
+            // This catches database errors like duplicate usernames
+            JOptionPane.showMessageDialog(null, "Connection Error or Duplicate Account!");
+        }
     }
     }//GEN-LAST:event_registerActionPerformed
 
     private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
-        // TODO add your handling code here:
+      // 1. Get data from all text fields
+    String fullName = fname.getText();
+    String userEmail = email.getText();
+    String phoneNumber = uname5.getText(); 
+    String userName = uname.getText();
+    String password = pword.getText();
+    String confirmPass = cpword.getText(); 
+    String role = jComboBox1.getSelectedItem().toString(); 
+
+    // 2. Validation: Check if any field is empty
+    if(fullName.isEmpty() || userEmail.isEmpty() || userName.isEmpty() || password.isEmpty()){
+        JOptionPane.showMessageDialog(null, "All fields are required!");
+    } 
+    // 3. Check if passwords match
+    else if(!password.equals(confirmPass)){
+        JOptionPane.showMessageDialog(null, "Passwords do not match!");
+    }
+    // 4. If valid, proceed to save as PENDING
+    else {
+        config.configclass conf = new config.configclass();
+        
+        // The SQL query now uses 'Pending' as the default status
+        String sql = "INSERT INTO users (u_fname, u_email, u_phone, u_username, u_password, u_status, u_type) "
+                   + "VALUES (?, ?, ?, ?, ?, 'Pending', ?)";
+
+        // Execute the insert using your configclass
+        if(conf.insertData(sql, fullName, userEmail, phoneNumber, userName, password, role) == 1) {
+            JOptionPane.showMessageDialog(null, "Registration Successful! Account is now PENDING.");
+
+            // Redirect back to Login
+            logIn loginFrame = new logIn(); 
+            loginFrame.setVisible(true); 
+            this.dispose(); 
+        } else {
+            JOptionPane.showMessageDialog(null, "Connection Error or Duplicate Account!");
+        }
+    }
     }//GEN-LAST:event_registerMouseClicked
 
     /**
@@ -293,6 +341,7 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JTextField cpword;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fname;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
