@@ -23,6 +23,7 @@ public class logIn extends javax.swing.JFrame {
      */
     public logIn() {
         initComponents();
+        
     }
 
     /**

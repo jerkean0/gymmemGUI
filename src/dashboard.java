@@ -18,20 +18,16 @@ public class dashboard extends javax.swing.JFrame {
      * Creates new form dashboadrd
      */
     public dashboard() {
-        initComponents();
-        initComponents();
-        Session sess = Session.getInstance();
-        String userRole = sess.getType(); 
-
-        if (userRole != null && userRole.equals("Staff")) {
-            // Keeps them visible but makes them unclickable (grayed out)
-            userpane.setEnabled(false);        
-            membershipPlans.setEnabled(false); 
-
-            // If you have icons/labels inside the panels, disable them too
-            jLabel4.setEnabled(false); // The "ACTIVE" label
-            jLabel5.setEnabled(false); // The "MEMBERSHIP PLANS" label
-        }
+        
+   initComponents(); 
+    config.Session sess = config.Session.getInstance();
+    
+  
+    if (sess.getType() != null && sess.getType().equalsIgnoreCase("STAFF")) {
+        
+              
+        
+    }
         
     }
      Color navcolor = new Color (102,102,102);
@@ -55,7 +51,7 @@ public class dashboard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         payments = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        userpane = new javax.swing.JPanel();
+        active = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         membershipPlans = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -115,6 +111,9 @@ public class dashboard extends javax.swing.JFrame {
 
         payments.setBackground(new java.awt.Color(102, 102, 102));
         payments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentsMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 paymentsMouseEntered(evt);
             }
@@ -131,29 +130,32 @@ public class dashboard extends javax.swing.JFrame {
 
         navbar.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 170, 40));
 
-        userpane.setBackground(new java.awt.Color(102, 102, 102));
-        userpane.addMouseListener(new java.awt.event.MouseAdapter() {
+        active.setBackground(new java.awt.Color(102, 102, 102));
+        active.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userpaneMouseClicked(evt);
+                activeMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                userpaneMouseEntered(evt);
+                activeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                userpaneMouseExited(evt);
+                activeMouseExited(evt);
             }
         });
-        userpane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        active.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ACTIVE");
-        userpane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
+        active.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
 
-        navbar.add(userpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 170, 40));
+        navbar.add(active, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 170, 40));
 
         membershipPlans.setBackground(new java.awt.Color(102, 102, 102));
         membershipPlans.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                membershipPlansMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 membershipPlansMouseEntered(evt);
             }
@@ -270,17 +272,28 @@ public class dashboard extends javax.swing.JFrame {
     maindesktop.add(dbp).setVisible(true);
     }//GEN-LAST:event_dashpaneMouseClicked
 
-    private void userpaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpaneMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userpaneMouseClicked
+    private void activeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activeMouseClicked
+    config.Session sess = config.Session.getInstance();
+    
+    if (sess.getType().equalsIgnoreCase("STAFf")) {
+       
+        javax.swing.JOptionPane.showMessageDialog(null, "This section is restricted to Admin use only, Please contact the ADMIN. ");
+    } else {
+        
+        active act = new active();
+        maindesktop.removeAll();
+        maindesktop.add(act);
+        act.setVisible(true);
+    }
+    }//GEN-LAST:event_activeMouseClicked
 
-    private void userpaneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpaneMouseEntered
-     userpane.setBackground(bodycolor);
-    }//GEN-LAST:event_userpaneMouseEntered
+    private void activeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activeMouseEntered
+     active.setBackground(bodycolor);
+    }//GEN-LAST:event_activeMouseEntered
 
-    private void userpaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userpaneMouseExited
-     userpane.setBackground(navcolor);
-    }//GEN-LAST:event_userpaneMouseExited
+    private void activeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activeMouseExited
+     active.setBackground(navcolor);
+    }//GEN-LAST:event_activeMouseExited
 
     private void membershipPlansMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membershipPlansMouseEntered
        membershipPlans.setBackground(bodycolor);
@@ -289,6 +302,38 @@ public class dashboard extends javax.swing.JFrame {
     private void membershipPlansMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membershipPlansMouseExited
        membershipPlans.setBackground(navcolor);
     }//GEN-LAST:event_membershipPlansMouseExited
+
+    private void paymentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsMouseClicked
+     // 1. Create the instance of the internal frame
+    Payments mp = new Payments(); 
+    
+    // 2. Use your new variable name: maindesktop
+    maindesktop.removeAll(); 
+    maindesktop.add(mp);
+    
+    // 3. Make the internal frame visible inside the desktop
+    mp.setVisible(true);
+    
+    // 4. Refresh the UI so the page appears immediately
+    maindesktop.revalidate();
+    maindesktop.repaint();
+    }//GEN-LAST:event_paymentsMouseClicked
+
+    private void membershipPlansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membershipPlansMouseClicked
+   config.Session sess = config.Session.getInstance();
+    
+    if (sess.getType().equalsIgnoreCase("STAFf")) {
+        javax.swing.JOptionPane.showMessageDialog(null, "This section is restricted to Admin use only.");
+    } else {
+        // Use the Class name 'membershipPlansForm', NOT the panel variable name
+        internalPages.membershipPlansForm mem = new internalPages.membershipPlansForm(); 
+        maindesktop.removeAll();
+        maindesktop.add(mem);
+        mem.setVisible(true);
+        maindesktop.revalidate();
+        maindesktop.repaint();
+    }
+    }//GEN-LAST:event_membershipPlansMouseClicked
 
     /**
      * @param args the command line arguments
@@ -328,6 +373,7 @@ public class dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel account;
+    private javax.swing.JPanel active;
     private javax.swing.JButton dashlogout;
     private javax.swing.JPanel dashpane;
     private javax.swing.JPanel header;
@@ -341,6 +387,5 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel membershipPlans;
     private javax.swing.JPanel navbar;
     private javax.swing.JPanel payments;
-    private javax.swing.JPanel userpane;
     // End of variables declaration//GEN-END:variables
 }

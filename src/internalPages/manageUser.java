@@ -24,6 +24,7 @@ public class manageUser extends javax.swing.JInternalFrame {
         displayData(); 
          this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
     ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+    
     }
     // PASTE IT HERE
 private String getSelectedUserId() {
@@ -38,8 +39,10 @@ private String getSelectedUserId() {
     public void displayData() {
     config.configclass cc = new config.configclass();
    
+    // Added u_type to the SELECT statement
     cc.displayData("SELECT u_id as 'ID', u_fname as 'First Name', "
                  + "u_email as 'Email', u_phone as 'Phone', u_username as 'Username', "
+                 + "u_type as 'Type', " // <--- NEW COLUMN ADDED HERE
                  + "u_status as 'Status' FROM users", user_table);
 }
     
@@ -130,7 +133,7 @@ private String getSelectedUserId() {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "member ID", "First Name", "Email", "Phone", "Username", "Password", "Status"
+                "member ID", "First Name", "Email", "Phone", "Username", "Type", "Status"
             }
         ));
         user_table.setSelectionBackground(new java.awt.Color(102, 102, 102));
@@ -349,15 +352,14 @@ private String getSelectedUserId() {
     private void searchUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserMouseClicked
      config.configclass conf = new config.configclass();
     
-    // 1. Get the text from 'search3' (the white box in your Navigator)
     String txt = search3.getText(); 
     
-    // 2. Query matches your 'users' table and avoids the missing 'u_Iname' column
+    // Updated query to include 'u_type' and 'u_phone' to match your table design
     String query = "SELECT u_id AS 'ID', u_fname AS 'First Name', "
-                 + "u_email AS 'Email', u_status AS 'Status' FROM users "
+                 + "u_email AS 'Email', u_phone AS 'Phone', u_username AS 'Username', "
+                 + "u_type AS 'Type', u_status AS 'Status' FROM users "
                  + "WHERE u_fname LIKE '%" + txt + "%' OR u_id LIKE '%" + txt + "%' OR u_email LIKE '%" + txt + "%'";
 
-    // 3. Display results in your 'user_table'
     conf.displayData(query, user_table);
     }//GEN-LAST:event_searchUserMouseClicked
 

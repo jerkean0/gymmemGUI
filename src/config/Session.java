@@ -5,7 +5,10 @@ public class Session {
     private int id;
     private String name;
     private String email;
-    private String type; // ADDED: To store if the user is Admin or Staff
+    private String type; 
+    
+    // NEW: Variable to store the selected Member ID for payments
+    private String selectedMemberID; 
 
     private Session() {}
 
@@ -16,7 +19,7 @@ public class Session {
         return instance;
     }
 
-    // Getters and Setters
+    // Existing Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     
@@ -26,12 +29,20 @@ public class Session {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    // ADDED: Getter and Setter for the User Type
     public String getType() { 
         return type; 
     }
     
     public void setType(String type) { 
         this.type = type; 
+    }
+
+    // NEW: Getter and Setter for passing Member ID between forms
+    public String getSelectedMemberID() {
+        return selectedMemberID;
+    }
+
+    public void setSelectedMemberID(String selectedMemberID) {
+        this.selectedMemberID = selectedMemberID;
     }
 }

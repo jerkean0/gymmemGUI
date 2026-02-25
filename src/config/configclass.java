@@ -5,15 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 public class configclass {
-    
-    
+
     public Connection connectDB() {
         try {
             Class.forName("org.sqlite.JDBC");
-           
             Connection con = DriverManager.getConnection("jdbc:sqlite:gymsystem.db");
             return con;
         } catch (Exception e) {
@@ -22,17 +22,27 @@ public class configclass {
         }
     }
 
-    // The method your register.java is looking for
+    public ResultSet getData(String query) throws SQLException {
+        Connection conn = connectDB();
+        Statement stmt = conn.createStatement();
+        return stmt.executeQuery(query);
+    }
+
+    public boolean recordExists(String query) {
+        try (ResultSet rs = getData(query)) {
+            return rs.next(); 
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
     public int insertData(String sql, Object... values) {
         try (Connection conn = connectDB(); 
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             for (int i = 0; i < values.length; i++) {
                 pstmt.setObject(i + 1, values[i]);
             }
-
             pstmt.executeUpdate();
-            System.out.println("Record added successfully!");
             return 1;
         } catch (SQLException e) {
             System.out.println("Insert Error: " + e.getMessage());
@@ -40,25 +50,34 @@ public class configclass {
         }
     }
 
-    public String authenticate(String sql, Object... values) {
+    public void updateData(String sql, Object... values) {
         try (Connection conn = connectDB();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             for (int i = 0; i < values.length; i++) {
                 pstmt.setObject(i + 1, values[i]);
             }
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getString("u_status"); 
-                }
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Successfully Updated!");
             }
         } catch (SQLException e) {
-            System.out.println("Login Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Update Error: " + e.getMessage());
         }
-        return null;
     }
-    
+
+    // ADDED DELETE METHOD
+    public void deleteData(String sql) {
+        try (Connection conn = connectDB();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            int rowsDeleted = pst.executeUpdate();
+            if (rowsDeleted > 0) {
+                JOptionPane.showMessageDialog(null, "Successfully Deleted!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Delete Error: " + e.getMessage());
+        }
+    }
+
     public void displayData(String sql, javax.swing.JTable table) {
         try (Connection conn = connectDB();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -67,9 +86,5 @@ public class configclass {
         } catch (SQLException e) {
             System.out.println("Error displaying data: " + e.getMessage());
         }
-    }
-
-    public void setLocationRelativeTo(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

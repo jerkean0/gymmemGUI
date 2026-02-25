@@ -19,6 +19,7 @@ public class register extends javax.swing.JFrame {
      */
     public register() {
         initComponents();
+        
     }
 
     /**
@@ -175,8 +176,8 @@ public class register extends javax.swing.JFrame {
         jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 220, 30));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "STAFf" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 80, 30));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User type", "ADMIN", "STAFF" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 100, 30));
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 540, 430));
 

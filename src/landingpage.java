@@ -15,6 +15,7 @@ public class landingpage extends javax.swing.JFrame {
      */
     public landingpage() {
         initComponents();
+        
     }
 
     /**

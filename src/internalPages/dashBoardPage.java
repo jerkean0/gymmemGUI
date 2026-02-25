@@ -20,6 +20,7 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
     public dashBoardPage() {
         initComponents();
         
+        
       this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
       BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
       bi.setNorthPane(null);
@@ -202,21 +203,21 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_settingsMouseExited
 
     private void membersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseClicked
-   // 1. Get the main window without using the word "dashboard"
+  
     javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
     
     try {
-        // 2. Find your blue area (maindesktop) inside that window
+        
         java.lang.reflect.Field desktopField = topFrame.getClass().getDeclaredField("maindesktop");
         desktopField.setAccessible(true);
         javax.swing.JDesktopPane desktop = (javax.swing.JDesktopPane) desktopField.get(topFrame);
         
-        // 3. Clear and show the Member page
+        
         desktop.removeAll();
         member m = new member();
         desktop.add(m).setVisible(true);
         
-        // 4. Update the screen
+       
         desktop.revalidate();
         desktop.repaint();
         
@@ -226,29 +227,28 @@ public class dashBoardPage extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_membersMouseClicked
 
     private void manageUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageUserMouseClicked
-    try {
-        // 1. Create the internal frame from the internalPages package
-        internalPages.manageUser userPage = new internalPages.manageUser();
-        
-        // 2. Get the main window (your dashBoard)
-        Object topFrame = javax.swing.SwingUtilities.getWindowAncestor(this);
-        
-        // 3. Find the 'maindesktop' variable inside the dashBoard class
-        java.lang.reflect.Field desktopField = topFrame.getClass().getDeclaredField("maindesktop");
-        desktopField.setAccessible(true);
-        javax.swing.JDesktopPane desktop = (javax.swing.JDesktopPane) desktopField.get(topFrame);
-        
-        // 4. Clear the current view and show the User page
-        desktop.removeAll();
-        desktop.add(userPage).setVisible(true);
-        
-        // 5. Refresh the UI
-        desktop.revalidate();
-        desktop.repaint();
-        
-    } catch (Exception e) {
-        // This will print if the variable name 'maindesktop' is spelled wrong
-        System.out.println("Error: " + e.getMessage());
+    config.Session sess = config.Session.getInstance();
+    
+   
+    if (sess.getType() != null && sess.getType().equalsIgnoreCase("STAFF")) {
+       
+        javax.swing.JOptionPane.showMessageDialog(null, "This section is restricted to Admin use only, Please contact the ADMIN.");
+    } else {
+      
+        try {
+            internalPages.manageUser userPage = new internalPages.manageUser();
+            Object topFrame = javax.swing.SwingUtilities.getWindowAncestor(this);
+            java.lang.reflect.Field desktopField = topFrame.getClass().getDeclaredField("maindesktop");
+            desktopField.setAccessible(true);
+            javax.swing.JDesktopPane desktop = (javax.swing.JDesktopPane) desktopField.get(topFrame);
+            
+            desktop.removeAll();
+            desktop.add(userPage).setVisible(true);
+            desktop.revalidate();
+            desktop.repaint();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
     }//GEN-LAST:event_manageUserMouseClicked
 
